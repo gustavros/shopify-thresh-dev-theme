@@ -1,3 +1,5 @@
+{% assign main_menu_linklist = linklists[section.settings.menu].links %}
+
 <div
   x-data="{ mobileMenuOpen: false }"
   class="relative bg-white"
@@ -24,7 +26,7 @@
         x-data="{ open: false }"
         class="hidden md:flex space-x-10"
       >
-        {% for link in linklists['main-menu'].links %}
+        {% for link in main_menu_linklist %}
           {% if link.links != blank %}
             <div class="relative w-full">
               <button
@@ -115,7 +117,7 @@
           <nav
             class="grid gap-y-7"
           >
-            {% for link in linklists['main-menu'].links %}
+            {% for link in main_menu_linklist %}
               {% assign link_handle = link.handle | replace: '-', '_' %}
 
               {% if link.links != blank %}
@@ -183,6 +185,13 @@
       "label": "Mobile menu title",
       "info": "The title that will be displayed in the mobile menu.",
       "default": "Menu"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Header menu",
+      "info": "Links that will be displayed in the header.",
+      "default": "main-menu"
     }
   ]
 }
