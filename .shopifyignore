@@ -1,4 +1,4 @@
 package.json
-pnpm-lock.yaml
-css
-node_modules
+package-lock.json
+css/
+node_modules/ 
