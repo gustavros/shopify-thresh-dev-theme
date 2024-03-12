@@ -42,8 +42,13 @@
                       {{ item.product.title | truncatewords: 5 }}
                     </a>
 
+
                     <span class="text-sm text-gray-500 my-1">
                       {{ item.variant.title }}
+                    </span>
+
+                    <span class="text-xs text-gray-500">
+                      {{ item.price | money }}
                     </span>
 
 
@@ -62,7 +67,7 @@
                     id="updates_{{ forloop.index }}">
                 </td>
                 <td class="py-4 px-2">
-                  {{ item.line_price | money }}
+                  {{ item.final_line_price | money }}
                 </td>
               </tr>
             {% endfor %}
@@ -136,11 +141,13 @@
           "type": "subtotal",
           "name": "Subtotal",
           "limit": 1
-        }, {
+        },
+        {
           "type": "update_button",
           "name": "Update Button",
           "limit": 1
-        }, {
+        },
+        {
           "type": "checkout_button",
           "name": "Checkout Button",
           "limit": 1
