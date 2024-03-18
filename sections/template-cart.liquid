@@ -3,7 +3,10 @@
     <div class="max-w-6xl flex flex-col my-10 mx-auto">
       <div class="flex items-end justify-between my-5">
         <h1 class="text-3xl">Your cart</h1>
-        <a href="{{ routes.all_products_collection_url }}" class="text-blue-600 hover:text-blue-800 font-medium underline">
+        <a
+          href="{{ routes.all_products_collection_url }}"
+          class="text-blue-600 hover:text-blue-800 font-medium underline"
+        >
           Continue shopping
         </a>
       </div>
@@ -13,7 +16,8 @@
       <form
         action="{{ routes.cart_url }}"
         method="post"
-        novalidate>
+        novalidate
+      >
         <table class="table-auto divide-y divide-gray-200 my-4 w-full">
           <thead>
             <th class="px-6 py-3 text-left text-sm font-medium text-gray-300">Product</th>
@@ -29,7 +33,8 @@
                       <img
                         src="{{ item.image | image_url }}"
                         alt=""
-                        class="w-20 h-20 object-cover border">
+                        class="w-20 h-20 object-cover border"
+                      >
                     {% else %}
                       {{ 'product-1' | placeholder_svg_tag: 'w-20 h-20 object-cover border' }}
                     {% endif %}
@@ -38,10 +43,8 @@
                 <td class="px-2 flex flex-col justify-center">
                   <a href="{{ item.url }}" class="my-1">
                     <a href="{{ item.url }}">
-
                       {{ item.product.title | truncatewords: 5 }}
                     </a>
-
 
                     <span class="text-sm text-gray-500 my-1">
                       {{ item.variant.title }}
@@ -51,8 +54,10 @@
                       {{ item.price | money }}
                     </span>
 
-
-                    <a href="{{ routes.cart.cart_change_url }}?line={{ forloop.index }}&quantity=0" class="text-sm font-medium text-red-500 my-1">
+                    <a
+                      href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0"
+                      class="text-sm font-medium text-red-500 my-1"
+                    >
                       Remove
                     </a>
                   </a>
@@ -64,7 +69,8 @@
                     name="updates[]"
                     value="{{ item.quantity }}"
                     min="1"
-                    id="updates_{{ forloop.index }}">
+                    id="updates_{{ forloop.index }}"
+                  >
                 </td>
                 <td class="py-4 px-2">
                   {{ item.final_line_price | money }}
@@ -77,81 +83,83 @@
         <div class="flex flex-col md:flex-row items-center justify-between">
           <div class="w-full my-4">
             <div class="flex flex-col items-start">
-              <label for="cart_notes" class="my-1">
-                Add a note to your order
-              </label>
+              <label for="cart_notes" class="my-1"> Add a note to your order </label>
               <textarea
                 name="note"
                 id="cart_notes"
-                class="w-full md:max-w-lg resize-none border h-20"></textarea>
+                class="w-full md:max-w-lg resize-none border h-20"
+              ></textarea>
             </div>
           </div>
           <div class="w-full my-4 md:w-80">
-
             {% for block in section.blocks %}
               {% case block.type %}
                 {% when 'subtotal' %}
-                  <h3 class="text-xl">
-                    Subtotal: {{ cart.total_price | money }}
-                  </h3>
+                  <h3 class="text-xl">Subtotal: {{ cart.total_price | money }}</h3>
                 {% when 'update_button' %}
                   <div class="my-2">
                     <button
                       name="update"
                       type="submit"
-                      class="w-full p-3 border border-gray-600 text-gray-600 font-medium hover:bg-gray-600 hover:text-white">
+                      class="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-full"
+                    >
                       Update cart
                     </button>
                   </div>
                 {% when 'checkout_button' %}
                   <div class="my-2">
                     <button
-                      type="submit"
                       name="checkout"
-                      class="w-full p-3 border border-gray-600 font-medium bg-gray-600 text-white">
+                      type="submit"
+                      class="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 w-full"
+                    >
                       Checkout
                     </button>
                   </div>
-              {% else %}
-                {% endcase %}
-              {% endfor %}
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
-  {% else %}
-    <div class="max-w-6xl h-60 my-4 mx-auto flex items-center justify-center">
-      <div class="text-center">
-        <h1 class="text-3xl my-4">Your cart is empty</h1>
-        <div class="my-4 py-4">
-          <a class="border border-gray-600 text-white bg-gray-600 px-8 py-3 rounded-lg shadow-md" href="{{ routes.all_products_collection_url }}">
-            Continue shopping
-          </a>
-        </div>
-      </div>
-    </div>
-  {% endif %}
+                {% else %}
 
-  {% schema %}
+              {% endcase %}
+            {% endfor %}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{% else %}
+  <div class="max-w-6xl h-60 my-4 mx-auto flex items-center justify-center">
+    <div class="text-center">
+      <h1 class="text-3xl my-4">Your cart is empty</h1>
+      <div class="my-4 py-4">
+        <a
+          class="border border-gray-600 text-white bg-gray-600 px-8 py-3 rounded-lg shadow-md"
+          href="{{ routes.all_products_collection_url }}"
+        >
+          Continue shopping
+        </a>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Template Cart",
+  "blocks": [
     {
-      "name": "Template Cart",
-      "blocks": [
-        {
-          "type": "subtotal",
-          "name": "Subtotal",
-          "limit": 1
-        },
-        {
-          "type": "update_button",
-          "name": "Update Button",
-          "limit": 1
-        },
-        {
-          "type": "checkout_button",
-          "name": "Checkout Button",
-          "limit": 1
-        }
-      ]
+      "type": "subtotal",
+      "name": "Subtotal",
+      "limit": 1
+    },
+    {
+      "type": "update_button",
+      "name": "Update Button",
+      "limit": 1
+    },
+    {
+      "type": "checkout_button",
+      "name": "Checkout Button",
+      "limit": 1
     }
-  {% endschema %}
+  ]
+}
+{% endschema %}
