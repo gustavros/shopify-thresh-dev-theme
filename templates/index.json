@@ -3,9 +3,22 @@
     "featured-collection": {
       "type": "featured-collection",
       "settings": {
-        "featured_collection": "all"
+        "title": "Featured Collection",
+        "featured_collection": "all",
+        "number_of_products_to_show": 8
+      }
+    },
+    "featured_collection_pJiPmE": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "More cheap",
+        "featured_collection": "under-50",
+        "number_of_products_to_show": 8
       }
     }
   },
-  "order": ["featured-collection"]
+  "order": [
+    "featured-collection",
+    "featured_collection_pJiPmE"
+  ]
 }

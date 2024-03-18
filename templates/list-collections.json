@@ -1,8 +1,22 @@
 {
   "sections": {
     "template": {
-      "type": "template-list-collections"
+      "type": "template-list-collections",
+      "settings": {
+        "title": "Collections"
+      }
+    },
+    "featured_collection_8it4V4": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Melhores produtos",
+        "featured_collection": "under-50",
+        "number_of_products_to_show": 4
+      }
     }
   },
-  "order": ["template"]
+  "order": [
+    "template",
+    "featured_collection_8it4V4"
+  ]
 }
